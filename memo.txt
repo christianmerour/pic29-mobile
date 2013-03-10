@@ -1,0 +1,133 @@
+Samedi 9 Mars 
+Création du projet
+
+Liens en vrac 
+	http://www.the-qrcode-generator.com/
+
+	http://developer.blackberry.com/html5/documentation/getting_started_with_ripple_1866966_11.html
+	http://emulate.phonegap.com/
+	http://developer.blackberry.com/html5/download/
+
+	http://ripple.tinyhippos.com/
+
+	http://todomvc.com/architecture-examples/backbone/
+	http://coenraets.org/blog/phonegap-tutorial/
+	https://github.com/bnolan/Backbone-Mobile/blob/master/application.coffee
+	http://jashkenas.github.com/coffee-script/#installation
+
+	http://www.raymondcamden.com/index.cfm/2013/1/15/PhoneGap-Sample--Shake-to-Roll
+	http://www.the-m-project.org/#showcase
+
+	http://mobile.jquery-fr.com/docs/pages/loader.html
+
+	http://documentcloud.github.com/backbone/
+	http://docs.phonegap.com/en/2.5.0/index.html
+	http://phonegap.com/
+
+	http://www.ippon-mobile.fr/lequipe/
+
+	http://www.appliness.com/getting-started-with-html-mobile-application-development-using-jquery-mobile-requirejs-and-backbonejs/#codesyntax_4
+
+
+Eclipse JUNO
+	Amélioration lancement Eclipse 256ko->1024ko
+
+GIT
+	création serveur GIT
+	eclipse GIT
+	windows GIT
+Phone Gap
+	install sous juno
+	D:\application2\phonegap-2.5.0
+	
+	./create <project_folder_path> <package_name> <project_name>
+	
+	D:\christian2\dev\pic29-mobile\client
+	C:\Users\Christian\git\pic29-mobile\client
+	com.pic29.mobile.client
+	pic29-mobile-client
+	
+cd D:\application2\phonegap-2.5.0\lib\android\bin
+D:
+create.bat C:\Users\Christian\git\pic29-mobile\client com.pic29.mobile.client pic29-mobile-client
+	Missing one of the following:
+	JDK: http://java.oracle.com
+	Android SDK: http://developer.android.com
+	Apache ant: http://ant.apache.org
+	
+	D:\application2\phonegap-2.5.0\lib\android\bin>java -version
+	java version "1.6.0_22"
+	Java(TM) SE Runtime Environment (build 1.6.0_22-b04)
+	Java HotSpot(TM) Client VM (build 17.1-b03, mixed mode, sharing)
+	
+	Path=....C:\Program Files\Android\android-sdk\platform-tools;C:\Program Files\Android\android-sdk\tools;
+	
+	Install ANT
+	http://mir2.ovh.net/ftp.apache.org/dist//ant/binaries/apache-ant-1.8.4-bin.zip
+	--> D:\application2\apache-ant-1.8.4
+	SET ANT_HOME=D:\application2\apache-ant-1.8.4
+	SET PATH=%PATH%;%ANT_HOME%\bin
+	
+	D:\application2\phonegap-2.5.0\lib\android\bin>ant
+	Buildfile: build.xml does not exist!
+	Build failed
+	
+	D:\application2\phonegap-2.5.0\lib\android\bin>echo %JAVA_HOME%
+	C:\Program Files\java\jdk1.6.0_13
+	
+SET JAVA_HOME=C:\Program Files\java\jdk1.6.0_13
+SET ANT_HOME=D:\application2\apache-ant-1.8.4
+SET PATH=%PATH%;%ANT_HOME%\bin;"%JAVA_HOME%\bin"
+cd D:\application2\phonegap-2.5.0\lib\android\bin
+D:
+create.bat C:\Users\Christian\git\pic29-mobile\client com.pic29.mobile.client pic29-mobile-client
+
+D:\application2\phonegap-2.5.0\lib\android\bin>javac -version
+javac 1.6.0_13
+
+D:\application2\phonegap-2.5.0\lib\android\bin>ant -version
+Apache Ant(TM) version 1.8.4 compiled on May 22 2012
+	
+	
+	;C:\Development\android-sdk-windows\platform-tools;C:\Development\android-sdk-windows\tools
+	
+SET JAVA_HOME=C:\Program Files\java\jdk1.6.0_13
+SET ANT_HOME=D:\application2\apache-ant-1.8.4
+SET ANDROID_SDK_HOME=C:\Program Files\Android\android-sdk
+SET PATH=%PATH%;%ANT_HOME%\bin;"%JAVA_HOME%\bin";"%ANDROID_SDK_HOME%\platform-tools";"%ANDROID_SDK_HOME%\tools";
+cd D:\application2\phonegap-2.5.0\lib\android\bin
+D:
+create.bat C:\Users\Christian\git\pic29-mobile\client com.pic29.mobile.client pic29-mobile-client
+
+mise en commentaire de REM IF NOT DEFINED FOUND GOTO MISSING dans create.bat
+
+D:\application2\phonegap-2.5.0\lib\android\bin>create.bat C:\Users\Christian\git\pic29-mobile\client com.pic29.mobile.client pic29-mobile-client
+Microsoft (R) Windows Script Host Version 5.7
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits réservés.
+
+Project already exists!
+
+create.bat C:\Users\Christian\git\pic29-mobile\client-create com.pic29.mobile.client pic29-mobile-client
+--> eclipse create new project android from an existing code... choose C:\Users\Christian\git\pic29-mobile\client-create
+
+copie de client-create vers client
+Correction du .project, <name>pic29-mobile-client</name>
+
+close/open eclipse ...
+
+import existing project into workspace ...OK
+detruction de client-create
+
+correction de __PACKAGE__ dans android manifest : com.pic29.mobile.client
+
+http://127.0.0.1/pic29-mobile-client/pic29-mobile-client.apk
+http://www.the-qrcode-generator.com/
+
+http://192.168.1.42/pic29-mobile-client/pic29-mobile-client.apk
+
+Dimanche 10 Mars
+http://www.the-qrcode-generator.com/
+http://www.zaure.net/pic29-mobile/client/bin/pic29-mobile-client.apk
+
+
+
