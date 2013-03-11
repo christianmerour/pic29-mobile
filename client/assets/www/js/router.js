@@ -25,7 +25,7 @@ define(['jquery',
         
         goBack: function() {
         	console.debug('goBack');
-        	this.reverse = false;
+        	this.reverse = true;
         	//2 fois car #back->#unepage->#pageback
         	if (typeof (navigator.app) !== "undefined") {
     	        navigator.app.backHistory(); 
