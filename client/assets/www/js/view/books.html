@@ -1,7 +1,7 @@
 <div data-role='header' data-position='fixed'> 
     <h1>Books</h1> 
-    <a href='#home' data-icon='home' data-iconpos='notext' 
-data-direction='reverse'>Home</a> 
+    <a href='#home' data-icon="arrow-l" data-transition="slide" data-direction='reverse'>Back</a>
+    <a href='#home' data-icon='home'    data-transition="pop"   data-direction='reverse'>Home</a>
 </div> 
  
 <div data-role='content'>	
@@ -12,7 +12,7 @@ data-direction='reverse'>Home</a>
                 <% for (var i = 0; i < data.length; i++) { %> 
                       <% var item = data[i]; %> 
                       <li> 
-                        <a href='#detail/<%=item.name%>/<%= item.id%>'>
+                        <a href='#detail/show/<%= item.id%>' data-transition="slide" >
 <%= item.name %></a> 
                       </li> 
                 <% } %> 
