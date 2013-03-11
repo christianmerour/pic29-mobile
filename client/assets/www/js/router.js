@@ -63,7 +63,12 @@ define(['jquery',
         	if(this.init) {
         		console.debug('init');
         	    this.init = false;
-        	}
+        	    
+        	    $(document).on('backbutton', function () {
+        	    	self.reverse = true;
+        	    	console.debug("onBackbutton")
+        	    }, false);
+            }
            
             var options = {transition: self.transition, reverse:self.reverse};
         	console.debug('changePage');
