@@ -4,12 +4,13 @@ define(['jquery', 'underscore', 'backbone', 'router'],function
 	
 	var router;
 	
-	var onBackButton = function () {
+	var onBackButton = function (e) {
 		console.debug('onBackButton');
         if($.mobile.activePage.is('#home')){
             e.preventDefault();
-            //navigator.app.exitApp();
+            navigator.app.exitApp();
         } else {
+        	e.preventDefault();
         	console.debug('AVANT this.router.reverse = true');
         	this.router.reverse = true;
         	console.debug('this.router.reverse = true');

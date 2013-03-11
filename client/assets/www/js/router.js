@@ -65,15 +65,15 @@ define(['jquery',
         	    this.init = false;
         	}
            
-            var options = {transition: self.transition, reverse:self.reverse};
+        	//change page an init vars
+            var options = {transition:self.transition, reverse:self.reverse};
         	console.debug('changePage');
         	console.debug(options);
-        	
         	$.mobile.changePage(newPage, options);
-            
             self.reverse = false;
             //self.transition = 'slide';
             
+            //button reverse direction management
             newPage.find('[data-direction]').on('click', function (event) {
             	var $this=$(this);
         		var direction = $this.attr('data-direction');
@@ -82,12 +82,14 @@ define(['jquery',
         		}
         	});
             
+            //button transition management
             newPage.find('[data-transition]').on('click', function (event) {
             	var $this=$(this);
         		var transition = $this.attr('data-transition');
         		self.transition = transition;
         	});
             
+            //remove old page
             $('div[data-role="page"]').on('pagehide', function (event, ui) {
    	    	   console.log("pagehide->remove");
    			   $(event.currentTarget).remove(); 
