@@ -22,9 +22,6 @@ define(['jquery',
             '*actions': 'defaultAction' //default action
         },
         
-        defaultAction: function(actions) { 
-	    	this.showView(); 
-	    },
 	    
         showView: function(viewName, action, path) {
         	
@@ -55,6 +52,10 @@ define(['jquery',
         
 	    showPage: function(path) {
 	    	//TODO
+	    },
+	    
+	    defaultAction: function(actions) { 
+	    	this.showView(); 
 	    },
 	    
         changePage:function (view) { 
