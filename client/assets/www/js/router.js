@@ -108,7 +108,8 @@ define(['jquery',
             	console.debug('AVANT this.router.reverse = true');
             	this.reverse = true;
             	console.debug('this.router.reverse = true');
-            	navigator.app.backHistory();
+            	navigator.app.exitApp();
+            	//navigator.app.backHistory();
             }
     	},
     	
