@@ -1,7 +1,7 @@
 
 define(['jquery'],function ($) { 
 
-	$.parseJSON: function( data ) {
+	$.parseJSON = function( data ) {
 		// Attempt to parse using the native JSON parser first
 		/**  THIS RAISES Parsing ERROR
 		if ( window.JSON && window.JSON.parse ) {
@@ -31,7 +31,7 @@ define(['jquery'],function ($) {
 		}
 	
 		$.error( "Invalid JSON: " + data );
-	}
+	};
 
 	return $;
 

@@ -1,5 +1,6 @@
-define(function(){ 
- 
+define(['jquery', 'underscore', 'backbone'], 
+	function ($, _, Backbone){ 
+
 	var Book=Backbone.Model.extend({ 
     //default attributes 
 		defaults:{ 
