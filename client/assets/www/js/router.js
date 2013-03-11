@@ -8,7 +8,8 @@ define(['jquery',
     var Router = Backbone.Router.extend({ 
     //define routes and mapping route to the function
     	init:true, 
-    	
+    	reverse:false,
+    	transition:'slide',
         routes: {
         	'page/*path' : 'showPage',
         	
@@ -50,23 +51,48 @@ define(['jquery',
 	    },
   
         changePage:function (view) {
+        	
         	console.debug('changePage');
         	//add the attribute 'data-role=”page” ' for each view's div
+        	var self = this;
         	var oldPage=$('div[data-role="page"]');
         	var newPage=view.$el;
         	newPage.attr('data-role', 'page'); 
         	$('body').append(newPage);
         	
-            if(!this.init){
-            	console.debug('!init');
-               $.mobile.changePage(newPage, {transition: 'slideup'});
-            }else{
-            	console.debug('init');
-            	this.init = false;
-            	$('body').append('<div data-role="page"></div>');
-            	this.showView();
-            }            
-    	}       
+        	if(this.init) {
+        		console.debug('init');
+        	    this.init = false;
+        	}
+           
+            var options = {transition: self.transition, reverse:self.reverse};
+        	console.debug('changePage');
+        	console.debug(options);
+        	
+        	$.mobile.changePage(newPage, options);
+            
+            self.reverse = false;
+            //self.transition = 'slide';
+            
+            newPage.find('[data-direction]').on('click', function (event) {
+            	var $this=$(this);
+        		var direction = $this.attr('data-direction');
+        		if (direction == 'reverse') {
+        			self.reverse = true;
+        		}
+        	});
+            
+            newPage.find('[data-transition]').on('click', function (event) {
+            	var $this=$(this);
+        		var transition = $this.attr('data-transition');
+        		self.transition = transition;
+        	});
+            
+            $('div[data-role="page"]').on('pagehide', function (event, ui) {
+   	    	   console.log("pagehide->remove");
+   			   $(event.currentTarget).remove(); 
+   		    });
+        }       
     });
  
     return Router; 
