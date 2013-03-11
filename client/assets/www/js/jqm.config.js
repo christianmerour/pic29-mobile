@@ -1,5 +1,8 @@
-define(['jquery'], function($){ 
+define(['jquery'], function($, jqm){ 
   'use strict'; 
+  
+  console.log("jqm.config");
+  
   	$(document).bind('mobileinit', function () { 
   		
   		console.log("mobileinit");

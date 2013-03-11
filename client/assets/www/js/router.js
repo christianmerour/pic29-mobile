@@ -2,9 +2,7 @@ define(['jquery',
         'underscore', 
         'backbone'
         ], 
-	function($, _, Backbone,
-			HomeView,BookListView,
-			BookCollection) { 
+	function($, _, Backbone) { 
  
     'use strict'; 
     var Router = Backbone.Router.extend({ 
@@ -17,17 +15,14 @@ define(['jquery',
         	':viewName/:action/*path' : 'showView',
         	':viewName/:action' :       'showView',
         	':viewName' :               'showView',
-        	'':                         'showView',           //home view
-
-            '*actions': 'defaultAction' //default action
+        	'':                         'showView'
         },
-        
 	    
         showView: function(viewName, action, path) {
         	
         	console.debug('showView');
         	console.debug(arguments);
-  	
+
         	if (typeof viewName === "undefined" || viewName === null ) {
         		viewName = 'home';
         	}
@@ -44,33 +39,32 @@ define(['jquery',
             		actionArguments = path.split('/'); 
         		}
     			
-        		view.bind('renderCompleted', self.changePage, self);
+        		view.once('renderCompleted', self.changePage, self);
         		method.apply(view, actionArguments);
-        		
         	})
 	    }, 
         
 	    showPage: function(path) {
+	    	console.debug('showPage');
 	    	//TODO
 	    },
-	    
-	    defaultAction: function(actions) { 
-	    	this.showView(); 
-	    },
-	    
-        changePage:function (view) { 
+  
+        changePage:function (view) {
+        	console.debug('changePage');
         	//add the attribute 'data-role=”page” ' for each view's div
         	var oldPage=$('div[data-role="page"]');
         	var newPage=view.$el;
         	newPage.attr('data-role', 'page'); 
         	$('body').append(newPage);
         	
-            if(!this.init){   
+            if(!this.init){
+            	console.debug('!init');
                $.mobile.changePage(newPage, {transition: 'slideup'});
             }else{
+            	console.debug('init');
             	this.init = false;
             	$('body').append('<div data-role="page"></div>');
-            	this.defaultAction();
+            	this.showView();
             }            
     	}       
     });
