@@ -20,9 +20,8 @@ function($, _, Backbone, pageHeaderHtml, pageFooterHtml){
       this.$el.append(this.pageHeaderTpl({path:this.path}));
      
       var content = this.pageContentTpl();
-      var $content = $("<div class='content-primary'>" + content + "</div>");
-      $content = $content.wrap("<div data-role='content' data-theme='b'/>");
-      this.$el.append($content);
+      content = $("<div data-role='content' data-theme='b'><div class='content-primary'>" + content + "</div></div>");
+      this.$el.append(content);
       
       this.$el.append(this.pageFooterTpl());
       
