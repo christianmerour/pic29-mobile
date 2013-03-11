@@ -4,21 +4,27 @@
     <a href='#home' data-icon='home'    data-role="button" data-transition="pop" data-direction='reverse'>Home</a>
 </div>
  
-<div data-role='content' data-theme="b">	
-        <ul data-role='listview' data-inset='true' > 
-          <!-- data is passed from template engine, 
-              and templat engine will execute the scripts inside <% %> 
-          --> 
-                <% for (var i = 0; i < data.length; i++) { %> 
-                      <% var item = data[i]; %> 
-                      <li> 
-                        <a href='#detail/show/<%= item.id%>' data-transition="slide" >
-<%= item.name %></a> 
-                      </li> 
-                <% } %> 
+<div data-role='content' data-theme="b">
+
+	<div class="content-primary"> 
+     
+        <ul data-role="listview" data-inset="true"> 
+             <li data-role="list-divider" class="listTitle" data-theme="a">Liste</li> 
+             <% for (var i = 0; i < data.length; i++) { %> 
+                   <% var item = data[i]; %> 
+                   <li><a href='#page/livre/<%= item.id%>.html' data-transition="slide"><%= item.name %></a></li> 
+             <% } %> 
         </ul> 
         
         <a href="#home" data-icon='home' data-role="button" data-inline="true">Home</a><br/>
         <a href="#page/test1.html" data-role="button" data-inline="true">test1.html</a><br/>
         <a href="#page/test/test2.html" data-role="button" data-inline="true">test/test2.html</a><br/>
-</div>
+        
+	</div> 
+</div><!-- /content --> 
+
+<div data-role="footer">
+	<h4>Copyright Protection Incendie Cornouaille</h4>
+</div><!-- /footer -->
+        
+

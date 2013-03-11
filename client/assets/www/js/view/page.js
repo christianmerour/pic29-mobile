@@ -10,13 +10,20 @@ function($, _, Backbone, pageHeaderHtml, pageFooterHtml){
 	  pageHeaderTpl:_.template(pageHeaderHtml), 
 	  pageFooterTpl:_.template(pageFooterHtml), 
 	  pageContentTpl:undefined, 
+	 
+	  path:undefined,
 	  
     //render the content into div of view 
     render: function(){ 
-      console.debug("render page");
+      console.debug("render page, path:" + this.path);
 	  
-      this.$el.append(this.pageHeaderTpl()); 
-      this.$el.append(this.pageContentTpl()); 
+      this.$el.append(this.pageHeaderTpl({path:this.path}));
+     
+      var content = this.pageContentTpl();
+      var $content = $("<div class='content-primary'>" + content + "</div>");
+      $content = $content.wrap("<div data-role='content' data-theme='b'/>");
+      this.$el.append($content);
+      
       this.$el.append(this.pageFooterTpl());
       
       this.trigger('renderCompleted', this);
@@ -28,6 +35,7 @@ function($, _, Backbone, pageHeaderHtml, pageFooterHtml){
     show : function(path) {
     	console.debug("show path:" + path);
     	var self = this;
+    	self.path = path;
     	var path = 'page/' + path;
     	var textPath = 'text!' + path;
     	console.debug('show textPath:' + textPath);
