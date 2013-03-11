@@ -99,18 +99,21 @@ define(['jquery',
         
         
        onBackButton :function(e) {
+    	    e.preventDefault();
+    	    /*
     		console.debug('onBackButton');
             if($.mobile.activePage.is('#home')){
                 e.preventDefault();
-                navigator.app.exitApp();
+                //navigator.app.exitApp();
             } else {
             	e.preventDefault();
             	console.debug('AVANT this.router.reverse = true');
             	this.reverse = true;
             	console.debug('this.router.reverse = true');
-            	navigator.app.exitApp();
-            	//navigator.app.backHistory();
+            	//navigator.app.exitApp(); //sortie applie
+            	navigator.app.backHistory();
             }
+            */
     	},
     	
     	onDeviceReady:function () {
