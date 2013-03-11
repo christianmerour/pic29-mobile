@@ -1,25 +1,27 @@
 define(['jquery', 'underscore', 'backbone', 
+'model/bookCollection',
 'text!view/books.html'], 
-       function ($, _, Backbone, bookViewTemplate) { 
+       function ($, _, Backbone, BookCollection, bookViewTemplate) { 
   'use strict'; 
  
   var BookListView = Backbone.View.extend({ 
  
     template: _.template(bookViewTemplate), 
- 
-    update:function(categoryId){ 
-      //set callback of the event 'fetchCompleted:Books' 
-      this.collection.bind('fetchCompleted:Books',this.render,this); 
-      this.collection.fetch(categoryId); 
-    }, 
+    collection: new BookCollection(),
  
     render: function(){ 
       this.$el.empty(); 
       //compile template using the data fetched by collection 
       this.$el.append(this.template({data:this.collection.toJSON()})); 
-      this.trigger('renderCompleted:Books',this); 
+      this.trigger('renderCompleted',this); 
       return this; 
-    } 
+    },
+    
+    show : function(categoryId){ 
+        this.collection.once('fetchCompleted:Books', this.render, this); 
+        this.collection.fetch(categoryId); 
+        return this;
+    }
   }); 
  
   return BookListView; 

@@ -1,12 +1,7 @@
 define(['jquery', 
         'underscore', 
-        'backbone',
-            
-        'view/home',
-        'view/books',
-            
-        'model/bookCollection', 
-        'jqm'], 
+        'backbone'
+        ], 
 	function($, _, Backbone,
 			HomeView,BookListView,
 			BookCollection) { 
@@ -16,35 +11,52 @@ define(['jquery',
     //define routes and mapping route to the function
     	init:true, 
     	
-        routes: { 
-        	'':    'showHome',           //home view 
-        	'home': 'showHome',         //home view as well 
-            'list/:categoryId' : 'showBooks', 
+        routes: {
+        	'page/*path' : 'showPage',
+        	
+        	':viewName/:action/*path' : 'showView',
+        	':viewName/:action' :       'showView',
+        	':viewName' :               'showView',
+        	'':                         'showView',           //home view
+
             '*actions': 'defaultAction' //default action
         },
         
-	    defaultAction: function(actions) { 
-	    	this.showHome(); 
-	    }, 
- 
-	    showHome:function(actions){ 
-	    	// will render home view and navigate to homeView 
-	    	var homeView=new HomeView(); 
-	    	homeView.render(); 
-	    	this.changePage(homeView); 
+        defaultAction: function(actions) { 
+	    	this.showView(); 
+	    },
+	    
+        showView: function(viewName, action, path) {
+        	
+        	console.debug('showView');
+        	console.debug(arguments);
+  	
+        	if (typeof viewName === "undefined" || viewName === null ) {
+        		viewName = 'home';
+        	}
+        	if (typeof action === "undefined" || action === null ) {
+    			action = 'render';
+    		}
+        	var self=this;
+        	require(['view/' + viewName], function (ViewClass) {
+        		var view = new ViewClass();
+        		var method = view[action];
+        		var actionArguments = [];
+        		
+    			if (typeof path !== "undefined" && path !== null ) {
+            		actionArguments = path.split('/'); 
+        		}
+    			
+        		view.bind('renderCompleted', self.changePage, self);
+        		method.apply(view, actionArguments);
+        		
+        	})
 	    }, 
         
-        showBooks:function(categoryId){ 
-            //create a collection 
-            var bookList=new BookCollection(); 
-            //create book list view and pass bookList as the collection 
-            var bookListView=new BookListView({collection:bookList}); 
-            //need to pass this as context 
-            bookListView.bind('renderCompleted:Books',this.changePage,this); 
-            //update view 
-            bookListView.update(categoryId); 
-        }, 
- 
+	    showPage: function(path) {
+	    	//TODO
+	    },
+	    
         changePage:function (view) { 
         	//add the attribute 'data-role=”page” ' for each view's div
         	var oldPage=$('div[data-role="page"]');
@@ -57,7 +69,7 @@ define(['jquery',
             }else{
             	this.init = false;
             	$('body').append('<div data-role="page"></div>');
-            	this.showHome();
+            	this.defaultAction();
             }            
     	}       
     });

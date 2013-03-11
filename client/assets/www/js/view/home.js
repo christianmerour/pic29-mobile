@@ -13,10 +13,22 @@ function($, _, Backbone, templateHtml){
       //$el is cached jQuery object for the view's element. 
       //append the compiled template into view div container 
       this.$el.append(this.template()); 
- 
+      this.trigger('renderCompleted',this);
       //return to enable chained calls 
       return this; 
-    } 
+    },
+    
+    test1 : function(para1) {
+    	console.debug("test1 para1:" + para1);
+    	this.render();
+    	return this;
+    },
+    test2 : function() {
+    	console.debug("test2");
+    	this.render();
+    	return this;
+    }
+    
   }); 
   return HomeView; 
 });
