@@ -12,13 +12,30 @@ define(['jquery',
     	transition:'slide',
         routes: {
         	'page/*path' : 'showPage',
-        	
+        	'back'       : 'goBack',
         	':viewName/:action/*path' : 'showView',
         	':viewName/:action' :       'showView',
         	':viewName' :               'showView',
         	'':                         'showView'
         },
-	    
+	     
+        onBackButton :function(e) {
+     	    e.preventDefault();
+        },
+        
+        goBack: function() {
+        	console.debug('goBack');
+        	this.reverse = false;
+        	//2 fois car #back->#unepage->#pageback
+        	if (typeof (navigator.app) !== "undefined") {
+    	        navigator.app.backHistory(); 
+    	        navigator.app.backHistory();
+    	    } else {
+    	        window.history.back();
+    	        window.history.back();
+    	    }
+        },
+        
         showView: function(viewName, action, path) {
         	
         	console.debug('showView');
@@ -46,8 +63,17 @@ define(['jquery',
 	    }, 
         
 	    showPage: function(path) {
-	    	console.debug('showPage');
-	    	//TODO
+	    	console.debug('showPage path:' + path);
+	    	var self=this;
+	    	
+	    	require(['view/page'], function (ViewClass) {
+        		var view = new ViewClass();
+        		var method = view['show'];
+        		var actionArguments = [path];
+        		
+    			view.once('renderCompleted', self.changePage, self);
+    			method.apply(view, actionArguments);
+    		})
 	    },
   
         changePage:function (view) {
@@ -63,7 +89,7 @@ define(['jquery',
         	if(this.init) {
         		console.debug('init');
         	    this.init = false;
-        	    this.onDeviceReady();
+        	    document.addEventListener("backbutton", this.onBackButton, false);
         	}
            
         	//change page an init vars
@@ -95,31 +121,10 @@ define(['jquery',
    	    	   console.log("pagehide->remove");
    			   $(event.currentTarget).remove(); 
    		    });
-        },
+        }
         
-        
-       onBackButton :function(e) {
-    	    e.preventDefault();
-    	    /*
-    		console.debug('onBackButton');
-            if($.mobile.activePage.is('#home')){
-                e.preventDefault();
-                //navigator.app.exitApp();
-            } else {
-            	e.preventDefault();
-            	console.debug('AVANT this.router.reverse = true');
-            	this.reverse = true;
-            	console.debug('this.router.reverse = true');
-            	//navigator.app.exitApp(); //sortie applie
-            	navigator.app.backHistory();
-            }
-            */
-    	},
+       
     	
-    	onDeviceReady:function () {
-    		console.debug('onDeviceReady');
-    		document.addEventListener("backbutton", this.onBackButton, false);
-    	}
         
     });
  
