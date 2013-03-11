@@ -66,7 +66,8 @@ define(['jquery',
         	    
         	    $(document).on('backbutton', function () {
         	    	self.reverse = true;
-        	    	console.debug("onBackbutton")
+        	    	console.debug('onBackbutton');
+        	    	document.href = '';
         	    }, false);
             }
            
