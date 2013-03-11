@@ -63,6 +63,7 @@ define(['jquery',
         	if(this.init) {
         		console.debug('init');
         	    this.init = false;
+        	    this.onDeviceReady();
         	}
            
         	//change page an init vars
@@ -94,7 +95,28 @@ define(['jquery',
    	    	   console.log("pagehide->remove");
    			   $(event.currentTarget).remove(); 
    		    });
-        }       
+        },
+        
+        
+       onBackButton :function(e) {
+    		console.debug('onBackButton');
+            if($.mobile.activePage.is('#home')){
+                e.preventDefault();
+                navigator.app.exitApp();
+            } else {
+            	e.preventDefault();
+            	console.debug('AVANT this.router.reverse = true');
+            	this.reverse = true;
+            	console.debug('this.router.reverse = true');
+            	navigator.app.backHistory();
+            }
+    	},
+    	
+    	onDeviceReady:function () {
+    		console.debug('onDeviceReady');
+    		document.addEventListener("backbutton", this.onBackButton, false);
+    	}
+        
     });
  
     return Router; 

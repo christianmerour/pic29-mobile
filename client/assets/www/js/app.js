@@ -4,6 +4,7 @@ define(['jquery', 'underscore', 'backbone', 'router'],function
 	
 	var router;
 	
+	/*
 	var onBackButton = function (e) {
 		console.debug('onBackButton');
         if($.mobile.activePage.is('#home')){
@@ -14,7 +15,7 @@ define(['jquery', 'underscore', 'backbone', 'router'],function
         	console.debug('AVANT this.router.reverse = true');
         	this.router.reverse = true;
         	console.debug('this.router.reverse = true');
-        	navigator.app.backHistory();
+        	//navigator.app.backHistory();
         }
 	};
 	
@@ -22,6 +23,7 @@ define(['jquery', 'underscore', 'backbone', 'router'],function
 		console.debug('onDeviceReady');
 		document.addEventListener("backbutton", this.onBackButton, false);
 	};
+	*/
 	
 	var init=function(){
 		
@@ -29,7 +31,7 @@ define(['jquery', 'underscore', 'backbone', 'router'],function
 		this.router=new Router(); 
 		Backbone.history.start(); 
 		
-		document.addEventListener("deviceready", this.onDeviceReady, false);
+		//document.addEventListener("deviceready", this.onDeviceReady, false);
 
 	}; 
 	
