@@ -29,10 +29,10 @@ define(['jquery',
         	//2 fois car #back->#unepage->#pageback
         	if (typeof (navigator.app) !== "undefined") {
     	        navigator.app.backHistory(); 
-    	        navigator.app.backHistory();
+    	        //navigator.app.backHistory();
     	    } else {
     	        window.history.back();
-    	        window.history.back();
+    	        //window.history.back();
     	    }
         },
         
@@ -121,12 +121,14 @@ define(['jquery',
    	    	   console.log("pagehide->remove");
    			   $(event.currentTarget).remove(); 
    		    });
+            
+            $('[href="#back"]').on('click', function (e) {
+    	    	   console.log("click->back");
+    	    	   e.preventDefault();
+    	    	   self.goBack();
+    		});
         }
-        
-       
-    	
-        
-    });
+     });
  
     return Router; 
 });
