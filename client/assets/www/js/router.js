@@ -117,6 +117,11 @@ define(['jquery',
     	    	   e.preventDefault();
     	    	   $.mobile.back();
     	    });
+            
+            $('.ui-btn').on('click', function (e) {
+               $(this).addClass('ui-btn-active');
+            });
+            
         }
      });
  
