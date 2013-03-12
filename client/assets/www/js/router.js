@@ -66,6 +66,7 @@ define(['jquery',
 	    changePage:function (view) {
         	
         	console.debug('changePage');
+        	$.mobile.loading();
         	//add the attribute 'data-role=”page” ' for each view's div
         	var self = this;
         	var oldPage=$('div[data-role="page"]');
@@ -85,7 +86,7 @@ define(['jquery',
         	console.debug(options);
         	
         	$.mobile.changePage(newPage, options);
-        	
+        	$.mobile.loading();
             self.reverse = false;
             //self.transition = 'slide';
             
