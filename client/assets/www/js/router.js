@@ -12,7 +12,6 @@ define(['jquery',
     	transition:'slide',
         routes: {
         	'page/*path' : 'showPage',
-        	'back'       : 'goBack',
         	':viewName/:action/*path' : 'showView',
         	':viewName/:action' :       'showView',
         	':viewName' :               'showView',
@@ -23,11 +22,21 @@ define(['jquery',
      	    e.preventDefault();
         },
         
+        onActionBegin : function (e) {
+        	$.mobile.loading( 'show', {
+         		text: null,
+         		textVisible: true,
+         		theme: 'a',
+         		html: ""
+         	});
+        },
+        
         showView: function(viewName, action, path) {
         	
         	console.debug('showView');
         	console.debug(arguments);
-
+        	this.onActionBegin();
+        	
         	if (typeof viewName === "undefined" || viewName === null ) {
         		viewName = 'home';
         	}
@@ -51,6 +60,8 @@ define(['jquery',
         
 	    showPage: function(path) {
 	    	console.debug('showPage path:' + path);
+	    	this.onActionBegin();
+	    	
 	    	var self=this;
 	    	
 	    	require(['view/page'], function (ViewClass) {
@@ -66,7 +77,7 @@ define(['jquery',
 	    changePage:function (view) {
         	
         	console.debug('changePage');
-        	$.mobile.loading();
+        	
         	//add the attribute 'data-role=”page” ' for each view's div
         	var self = this;
         	var oldPage=$('div[data-role="page"]');
@@ -86,7 +97,7 @@ define(['jquery',
         	console.debug(options);
         	
         	$.mobile.changePage(newPage, options);
-        	$.mobile.loading();
+        	
             self.reverse = false;
             //self.transition = 'slide';
             
