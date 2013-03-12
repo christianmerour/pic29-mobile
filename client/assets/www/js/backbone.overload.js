@@ -1,5 +1,5 @@
 
-/**
+
 define(['backbone'],function (Backbone) { 
 	'use strict'; 
 	
@@ -17,8 +17,7 @@ define(['backbone'],function (Backbone) {
 	  setTimeout(function() {
 		if (self.iframe) self.navigate(current);
 	    self.loadUrl() || self.loadUrl(self.getHash());
-	  }, 1000);
+	  }, 0);
 	};
 
 });
-**/
