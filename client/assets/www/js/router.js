@@ -120,6 +120,7 @@ define(['jquery',
             
             $('[href="#back"]').on('click', function (e) {
     	    	   console.log("click->back");
+    	    	   self.reverse = true;
     	    	   e.preventDefault();
     	    	   $.mobile.back();
     	    });
