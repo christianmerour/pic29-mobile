@@ -52,13 +52,13 @@
              <li data-role="list-divider" class="listTitle" data-theme="a">Liste</li> 
              <% for (var i = 0; i < data.length; i++) { %> 
                    <% var item = data[i]; %> 
-                   <li><a href='#page/livre/<%= item.id%>.html' data-transition="slide"><%= item.name %></a></li> 
+                   <li><a href='#page/livre/<%= item.id%>.html' data-transition="none"><%= item.name %></a></li> 
              <% } %> 
         </ul> 
         
-        <a href="#home" data-icon='home' data-role="button" data-inline="true">Home</a><br/>
-        <a href="#page/test1.html" data-role="button" data-inline="true">test1.html</a><br/>
-        <a href="#page/test/test2.html" data-role="button" data-inline="true">test/test2.html</a><br/>
+        <a href="#home" data-icon='home' data-role="button" data-inline="true" data-transition="none">Home</a><br/>
+        <a href="#page/test1.html" data-role="button" data-inline="true" data-transition="none">test1.html</a><br/>
+        <a href="#page/test/test2.html" data-role="button" data-inline="true" data-transition="none">test/test2.html</a><br/>
         
 	</div> 
 </div><!-- /content --> 
