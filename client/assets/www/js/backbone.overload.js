@@ -1,9 +1,10 @@
 
-define(['backbone', 'underscore'],function (Backbone, _) { 
-
+define(['backbone'],function (Backbone) { 
+	'use strict'; 
+	
      // Checks the current URL to see if it has changed, and if it has,
     // calls `loadUrl`, normalizing across the hidden iframe.
-	History.prototype.checkUrl =  function(e) {
+	Backbone.History.prototype.checkUrl =  function(e) {
       var current = this.getFragment();
       if (current === this.fragment && this.iframe) {
         current = this.getFragment(this.getHash(this.iframe));
