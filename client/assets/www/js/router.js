@@ -64,13 +64,6 @@ define(['jquery',
 	    },
   
 	    changePage:function (view) {
-	    	var self=this;
-	    	setTimeout(function() {
-	    		self.changePageDefered(view);
-	    	}, 0);
-	    },
-	    
-        changePageDefered:function (view) {
         	
         	console.debug('changePage');
         	//add the attribute 'data-role=”page” ' for each view's div

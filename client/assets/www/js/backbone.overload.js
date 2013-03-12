@@ -11,11 +11,12 @@ define(['backbone'],function (Backbone) {
       }
       if (current === this.fragment) return false;
 	  
+      //Add a small but visible delay to have enought time for css to manage color change.
 	  var self=this;
 	  setTimeout(function() {
 		if (self.iframe) self.navigate(current);
 	    self.loadUrl() || self.loadUrl(self.getHash());
-	  }, 0);
+	  }, 100);
 	};
 
 });
