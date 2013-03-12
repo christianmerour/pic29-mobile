@@ -23,19 +23,6 @@ define(['jquery',
      	    e.preventDefault();
         },
         
-        goBack: function() {
-        	console.debug('goBack');
-        	this.reverse = true;
-        	//2 fois car #back->#unepage->#pageback
-        	if (typeof (navigator.app) !== "undefined") {
-    	        navigator.app.backHistory(); 
-    	        //navigator.app.backHistory();
-    	    } else {
-    	        window.history.back();
-    	        //window.history.back();
-    	    }
-        },
-        
         showView: function(viewName, action, path) {
         	
         	console.debug('showView');
@@ -76,7 +63,14 @@ define(['jquery',
     		})
 	    },
   
-        changePage:function (view) {
+	    changePage:function (view) {
+	    	var self=this;
+	    	setTimeout(function() {
+	    		self.changePageDefered(view);
+	    	}, 0);
+	    },
+	    
+        changePageDefered:function (view) {
         	
         	console.debug('changePage');
         	//add the attribute 'data-role=”page” ' for each view's div
@@ -96,7 +90,9 @@ define(['jquery',
             var options = {transition:self.transition, reverse:self.reverse};
         	console.debug('changePage');
         	console.debug(options);
+        	
         	$.mobile.changePage(newPage, options);
+        	
             self.reverse = false;
             //self.transition = 'slide';
             
@@ -125,8 +121,8 @@ define(['jquery',
             $('[href="#back"]').on('click', function (e) {
     	    	   console.log("click->back");
     	    	   e.preventDefault();
-    	    	   self.goBack();
-    		});
+    	    	   $.mobile.back();
+    	    });
         }
      });
  
