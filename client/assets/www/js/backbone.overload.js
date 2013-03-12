@@ -16,7 +16,7 @@ define(['backbone'],function (Backbone) {
 	  setTimeout(function() {
 		if (self.iframe) self.navigate(current);
 	    self.loadUrl() || self.loadUrl(self.getHash());
-	  }, 100);
+	  }, 1000);
 	};
 
 });
